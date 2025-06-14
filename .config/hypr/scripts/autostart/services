@@ -2,28 +2,29 @@
 
 # Wallpaper engine
 # swww-daemon --format xrgb &
-hyprpaper &
+# start Hyprland with uwsm
+# hyprpaper &
 
 # Automounter for removable media
 udiskie &
 
 # Pyprland Daemon
-pypr --debug /tmp/pypr.log &
+# pypr --debug /tmp/pypr.log &
 
 # Bar
-waybar &
+# waybar &
 
 # Notification Daemon
-swaync &
+# swaync &
 
 # OSD Window
-swayosd-server &
+# swayosd-server &
 
 # Idle daemon to screen lock
-hypridle &
+# hypridle &
 
 # Clipboard
-wl-paste --watch cliphist store &
+# wl-paste --watch cliphist store &
 
 # Polkit authentication
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

@@ -3,6 +3,6 @@
     "on-click": "pypr toggle btop",
     "format": "CPU: {usage}%",
     "tooltip": false,
-    "interval": 2,
+    "interval": 2
   },
 }

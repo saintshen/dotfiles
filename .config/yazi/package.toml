@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "63f9650"
+rev = "aeca767"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "imsi32/yatline"
-rev = "4872af0"
-hash = "d32742ded0e73146a8ca590fdc4fb404"
+rev = "73bce63"
+hash = "b99a343192db7bc696da7203912af2be"
 
 [[plugin.deps]]
 use = "imsi32/yatline-githead"
@@ -15,7 +15,7 @@ hash = "4d441b38138ce6492a4e10fa349fd65"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "63f9650"
+rev = "aeca767"
 hash = "bf6f074cd41ee33c3360341d168f9733"
 
 [flavor]

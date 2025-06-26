@@ -1,0 +1,38 @@
+#!/usr/bin/env bash -x
+
+LOG_FILE="/tmp/random_wallpaper.log"
+
+exec >> $LOG_FILE 2>&1
+echo "----- $(date): wallpaper script start -----" >> $LOG_FILE 2>&1
+
+# export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+
+WALLPAPER_DIR="$HOME/.config/hypr/wallpapers/" > $LOG_FILE 2>&1
+
+random=$(/sbin/fd --base-directory "$WALLPAPER_DIR" --type f . | shuf -n 1) > $LOG_FILE 2>&1
+if [ -z "$random" ]; then
+  echo "No wallpapers found in $WALLPAPER_DIR" >> $LOG_FILE 2>&1
+  exit 1
+fi
+
+WALLPAPER="$WALLPAPER_DIR$random" > $LOG_FILE 2>&1
+if [ ! -f "$WALLPAPER" ]; then
+  echo "Selected wallpaper does not exist: $WALLPAPER" >> $LOG_FILE 2>&1
+  exit 1
+fi
+echo "Selected wallpaper: $WALLPAPER" >> $LOG_FILE 2>&1
+
+if pgrep -x "hyprpaper" >/dev/null; then
+  # If hyprpaper is running, use it to set the wallpaper
+  echo "Using hyprpaper to set wallpaper" >> $LOG_FILE 2>&1
+  hyprctl hyprpaper reload ,"$WALLPAPER" && notify-send "Wallpaper Changed" -i "$WALLPAPER" --app-name=Wallpaper >> $LOG_FILE 2>&1
+elif pgrep -x "swww" >/dev/null; then
+  # If swww is running, use it to set the wallpaper
+  echo "Using swww to set wallpaper" >> $LOG_FILE 2>&1
+  swww img "$WALLPAPER" \
+    --transition-bezier 0.5,1.19,.8,.4 \
+    --transition-type wipe \
+    --transition-duration 2 \
+    --transition-fps 75 && notify-send "Wallpaper Changed" -i "$WALLPAPER" --app-name=Wallpaper >> $LOG_FILE 2>&1
+fi
+

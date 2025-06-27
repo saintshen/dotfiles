@@ -19,3 +19,4 @@
 	path = ~/.config/delta/catppuccin.gitconfig
 [delta]
 	side-by-side = true
+	features = catppuccin_macchiato
